@@ -1,10 +1,8 @@
 # Codex Skills
 
-这个仓库用于存放可复用的 Codex skills。把仓库 clone 到 Codex 的 skills 目录后，新的 Codex 会话就可以发现并使用这些 skill。
+这个仓库用于存放可复用的 Codex skills。仓库根目录本身就对应 Codex 的 `.codex/skills` 目录，每一个一级文件夹就是一个独立 skill。
 
 ## 仓库结构
-
-这个仓库本身就对应 Codex 的 `.codex/skills` 目录。每一个一级文件夹就是一个独立 skill。
 
 推荐结构：
 
@@ -13,16 +11,14 @@ skills/
   README.md
   prototype-template-router/
     SKILL.md
+    README.md
     agents/
       openai.yaml
     references/
       templates.md
   another-skill/
     SKILL.md
-    agents/
-      openai.yaml
-  third-skill/
-    SKILL.md
+    README.md
 ```
 
 不要再额外套一层分类目录，例如下面这种不推荐：
@@ -34,32 +30,23 @@ skills/
       SKILL.md
 ```
 
-原因是 Codex 通常按 `.codex/skills/<skill-name>/SKILL.md` 这种一级目录结构发现 skill。后续 skill 变多时，建议用清晰的 skill 文件夹命名来管理，例如：
+原因是 Codex 通常按 `.codex/skills/<skill-name>/SKILL.md` 这种一级目录结构发现 skill。后续 skill 变多时，直接在仓库根目录继续增加同级文件夹即可。
 
-- `prototype-template-router`
-- `figma-storefront-router`
-- `mobile-app-template-router`
-- `job-apply-assistant`
-
-如果确实想分类，可以在文件夹命名里加前缀，而不是嵌套目录，例如 `design-prototype-template-router`。
-
-## 当前包含的 skill
-
-### prototype-template-router
-
-`prototype-template-router` 会根据你的原型设计描述，自动选择合适的 Figma 参考模板：
-
-- 中后台 / SaaS / CRM / 管理系统 -> Ant Design 模板
-- 协作工具 / 项目管理 / 工单 / 知识库 -> Atlassian 模板
-- 电商后台 / 订单 / 商品 / 库存 / 营销后台 -> Shopify Polaris 模板
-
-模板路由表在：
+如果想分类，建议用命名前缀，而不是嵌套目录，例如：
 
 ```text
-prototype-template-router/references/templates.md
+design-prototype-template-router/
+figma-storefront-router/
+mobile-app-template-router/
 ```
 
-以后新增 App、电商前台、移动端等模板时，优先改这个文件。
+## 当前 Skills
+
+| Skill | 说明 | 文档 |
+| --- | --- | --- |
+| `prototype-template-router` | 根据产品原型描述选择合适的 Figma 参考模板，并指导 Codex 按模板风格生成页面。 | [使用说明](./prototype-template-router/README.md) |
+
+以后新增 skill 时，只需要在这个表格里加一行。每个 skill 的详细调用方式、权限要求、扩展说明，都放到对应 skill 文件夹自己的 `README.md`。
 
 ## 安装位置
 
@@ -109,6 +96,7 @@ clone 后目录应该长这样：
     README.md
     prototype-template-router/
       SKILL.md
+      README.md
       agents/
         openai.yaml
       references/
@@ -119,7 +107,7 @@ clone 后目录应该长这样：
 
 ## 如果你已经有 `.codex/skills` 目录
 
-不要直接覆盖原来的目录。可以先 clone 到临时目录，再复制 skill 文件夹。
+不要直接覆盖原来的目录。可以先 clone 到临时目录，再复制需要的 skill 文件夹。
 
 ### Windows PowerShell
 
@@ -151,61 +139,10 @@ cd "$env:USERPROFILE\.codex\skills"
 git pull
 ```
 
-如果你是复制安装，则在临时仓库 `git pull` 后再复制一次 `prototype-template-router` 文件夹。
+如果你是复制安装，则在临时仓库 `git pull` 后再复制需要更新的 skill 文件夹。
 
-## 怎么调用
+## 通用注意事项
 
-在 Codex 里可以显式调用：
-
-```text
-Use $prototype-template-router 根据下面描述做一个 SaaS 中后台原型，并写入我的 Figma 文件：...
-```
-
-中文也可以：
-
-```text
-使用 $prototype-template-router，帮我根据这个产品描述判断应该参考哪个模板，并在 Figma 里生成原型页面：...
-```
-
-也可以通过关键词触发，例如：
-
-```text
-参考 Ant Design 模板，帮我做一个 CRM 客户管理系统原型。
-```
-
-```text
-参考 Atlassian 模板，帮我做一个项目协作和工单系统。
-```
-
-```text
-参考 Shopify Polaris 模板，帮我做一个电商后台的订单和商品管理系统。
-```
-
-## Figma 访问要求
-
-这个仓库只提供 Codex skill，不包含 Figma 文件本体。真正设计或写入 Figma 时，运行 Codex 的电脑还需要满足：
-
-1. Codex 能使用 Figma MCP / Figma 连接能力。
-2. 当前 Figma 账号能访问 `templates.md` 中配置的参考模板文件。
-3. 当前 Figma 账号对目标设计文件有编辑权限。
-
-clone 这个仓库不会自动获得 Figma 权限。换电脑时请用同一个能访问这些模板的 Figma 账号登录，或者把模板文件共享给新电脑使用的 Figma 账号。
-
-## 扩展新模板
-
-新增模板时，一般只改：
-
-```text
-prototype-template-router/references/templates.md
-```
-
-建议每个新模板都写清楚：
-
-- Figma URL
-- Use for
-- Keywords
-- Reference pages
-- Style notes
-- Prefer over others when
-
-这样 Codex 每次只需要读路由表，就能快速选择参考模板，不必扫描所有组件库。
+- clone 这个仓库只会安装 skill，不会自动获得 Figma、GitHub 或其他外部系统权限。
+- 如果某个 skill 依赖 Figma、GitHub、Linear 等连接器，需要在使用那台电脑上单独登录并确认权限。
+- 新增 skill 时，保持一级目录结构，并确保每个 skill 文件夹里有 `SKILL.md`。
