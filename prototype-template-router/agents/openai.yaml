@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prototype Template Router"
+  short_description: "Route prototype requests to Figma reference templates."
+  default_prompt: "Use $prototype-template-router to choose the right Figma reference template and design a prototype from my product description."
