@@ -2,6 +2,47 @@
 
 这个仓库用于存放可复用的 Codex skills。把仓库 clone 到 Codex 的 skills 目录后，新的 Codex 会话就可以发现并使用这些 skill。
 
+## 仓库结构
+
+这个仓库本身就对应 Codex 的 `.codex/skills` 目录。每一个一级文件夹就是一个独立 skill。
+
+推荐结构：
+
+```text
+skills/
+  README.md
+  prototype-template-router/
+    SKILL.md
+    agents/
+      openai.yaml
+    references/
+      templates.md
+  another-skill/
+    SKILL.md
+    agents/
+      openai.yaml
+  third-skill/
+    SKILL.md
+```
+
+不要再额外套一层分类目录，例如下面这种不推荐：
+
+```text
+skills/
+  design/
+    prototype-template-router/
+      SKILL.md
+```
+
+原因是 Codex 通常按 `.codex/skills/<skill-name>/SKILL.md` 这种一级目录结构发现 skill。后续 skill 变多时，建议用清晰的 skill 文件夹命名来管理，例如：
+
+- `prototype-template-router`
+- `figma-storefront-router`
+- `mobile-app-template-router`
+- `job-apply-assistant`
+
+如果确实想分类，可以在文件夹命名里加前缀，而不是嵌套目录，例如 `design-prototype-template-router`。
+
 ## 当前包含的 skill
 
 ### prototype-template-router
@@ -65,6 +106,7 @@ clone 后目录应该长这样：
 ```text
 .codex/
   skills/
+    README.md
     prototype-template-router/
       SKILL.md
       agents/
