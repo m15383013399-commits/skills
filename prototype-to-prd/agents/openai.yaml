@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prototype To PRD"
+  short_description: "Clarify prototype logic first, then draft implementation-ready PRDs."
+  default_prompt: "Use $prototype-to-prd. First interrogate the prototype and project notes through dialogue, then draft an implementation-ready PRD."

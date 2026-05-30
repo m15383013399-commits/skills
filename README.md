@@ -16,9 +16,18 @@ skills/
       openai.yaml
     references/
       templates.md
-  another-skill/
+  prototype-to-prd/
     SKILL.md
-    README.md
+    agents/
+    references/
+  prototype-to-prd-clarify/
+    SKILL.md
+    agents/
+    references/
+  prototype-to-prd-draft/
+    SKILL.md
+    agents/
+    references/
 ```
 
 不要再额外套一层分类目录，例如下面这种不推荐：
@@ -45,6 +54,9 @@ mobile-app-template-router/
 | Skill | 说明 | 文档 |
 | --- | --- | --- |
 | `prototype-template-router` | 根据产品原型描述选择合适的 Figma 参考模板，并指导 Codex 按模板风格生成页面。 | [使用说明](./prototype-template-router/README.md) |
+| `prototype-to-prd` | 将原型、流程、截图和说明转换成可交付给研发的 PRD 或交互规格，并在起草前先澄清关键业务规则。 | [SKILL.md](./prototype-to-prd/SKILL.md) |
+| `prototype-to-prd-clarify` | 专门用于 PRD 起草前的澄清阶段，梳理页面流、按钮逻辑、状态流转、前后端边界和未决问题。 | [SKILL.md](./prototype-to-prd-clarify/SKILL.md) |
+| `prototype-to-prd-draft` | 基于澄清阶段产出的 `prototype-prd-handoff.md` 和项目资料，撰写实现导向的最终 PRD 文档。 | [SKILL.md](./prototype-to-prd-draft/SKILL.md) |
 
 以后新增 skill 时，只需要在这个表格里加一行。每个 skill 的详细调用方式、权限要求、扩展说明，都放到对应 skill 文件夹自己的 `README.md`。
 
@@ -101,6 +113,18 @@ clone 后目录应该长这样：
         openai.yaml
       references/
         templates.md
+    prototype-to-prd/
+      SKILL.md
+      agents/
+      references/
+    prototype-to-prd-clarify/
+      SKILL.md
+      agents/
+      references/
+    prototype-to-prd-draft/
+      SKILL.md
+      agents/
+      references/
 ```
 
 然后重新打开一个 Codex 会话，skill 就会出现在可用 skills 里。
@@ -114,6 +138,9 @@ clone 后目录应该长这样：
 ```powershell
 git clone https://github.com/m15383013399-commits/skills.git "$env:USERPROFILE\codex-skills-repo"
 Copy-Item -Recurse -Force "$env:USERPROFILE\codex-skills-repo\prototype-template-router" "$env:USERPROFILE\.codex\skills\prototype-template-router"
+Copy-Item -Recurse -Force "$env:USERPROFILE\codex-skills-repo\prototype-to-prd" "$env:USERPROFILE\.codex\skills\prototype-to-prd"
+Copy-Item -Recurse -Force "$env:USERPROFILE\codex-skills-repo\prototype-to-prd-clarify" "$env:USERPROFILE\.codex\skills\prototype-to-prd-clarify"
+Copy-Item -Recurse -Force "$env:USERPROFILE\codex-skills-repo\prototype-to-prd-draft" "$env:USERPROFILE\.codex\skills\prototype-to-prd-draft"
 ```
 
 ### macOS / Linux
@@ -121,6 +148,9 @@ Copy-Item -Recurse -Force "$env:USERPROFILE\codex-skills-repo\prototype-template
 ```bash
 git clone https://github.com/m15383013399-commits/skills.git ~/codex-skills-repo
 cp -R ~/codex-skills-repo/prototype-template-router ~/.codex/skills/
+cp -R ~/codex-skills-repo/prototype-to-prd ~/.codex/skills/
+cp -R ~/codex-skills-repo/prototype-to-prd-clarify ~/.codex/skills/
+cp -R ~/codex-skills-repo/prototype-to-prd-draft ~/.codex/skills/
 ```
 
 ## 更新方式

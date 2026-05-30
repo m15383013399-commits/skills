@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prototype Clarify"
+  short_description: "Question prototype logic and write prototype-prd-handoff.md."
+  default_prompt: "Use $prototype-to-prd-clarify to interrogate the prototype through dialogue and write prototype-prd-handoff.md before drafting."

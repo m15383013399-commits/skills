@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prototype Draft"
+  short_description: "Draft PRDs from the prototype and prototype-prd-handoff.md."
+  default_prompt: "Use $prototype-to-prd-draft to read prototype-prd-handoff.md and draft the final implementation-ready PRD."
